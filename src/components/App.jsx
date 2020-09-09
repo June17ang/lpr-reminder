@@ -12,7 +12,10 @@ class App extends Component {
 
   addReminder = () => {
     this.props.addReminder(this.state.text);
-    console.log("props", this.props);
+  };
+
+  deleteReminder = (id) => {
+    this.props.deleteReminder(id);
   };
 
   renderReminder = () => {
@@ -26,7 +29,7 @@ class App extends Component {
               <div className="list-item">{reminder.text}</div>
               <div
                 className="list-item delete-btn"
-                onClick={this.deleteReminder(reminder.id)}
+                onClick={() => this.deleteReminder(reminder.id)}
               >
                 &#x2715;
               </div>
@@ -36,8 +39,6 @@ class App extends Component {
       </ul>
     );
   };
-
-  deleteReminder = (id) => {};
 
   render() {
     return (
