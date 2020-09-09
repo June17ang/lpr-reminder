@@ -12,16 +12,19 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    setInterval(() => this.renderReminder(), 60000);
+  }
+
   addReminder = () => {
     if (!this.state.text) {
       alert("Please insert your reminder");
     } else {
-      if (!this.state.dueDate) {
-        this.setState({
-          dueDate: moment(new Date()).format("YYYY-MM-DDTHH:mm"),
-        });
+      let dueDate = this.state.dueDate;
+      if (!dueDate) {
+        dueDate = moment(new Date()).format("YYYY-MM-DDTHH:mm");
       }
-      this.props.addReminder(this.state.text, this.state.dueDate);
+      this.props.addReminder(this.state.text, dueDate);
 
       //clear input value
       this.clearInputReminder();
