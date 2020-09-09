@@ -13,7 +13,22 @@ class App extends Component {
   }
 
   addReminder = () => {
-    this.props.addReminder(this.state.text, this.state.dueDate);
+    if (!this.state.text) {
+      alert("Please insert your reminder");
+    } else {
+      if (!this.state.dueDate) {
+        this.setState({
+          dueDate: moment(new Date()).format("YYYY-MM-DDTHH:mm"),
+        });
+      }
+      this.props.addReminder(this.state.text, this.state.dueDate);
+
+      let className = document.getElementsByClassName("inputForm");
+      for (var i = 0, ilen = className.length - 1; i < ilen; i++) {
+        className[i].value = "";
+      }
+      this.setState({ text: "", dueDate: "" });
+    }
   };
 
   deleteReminder = (id) => {
@@ -53,12 +68,12 @@ class App extends Component {
         <div className="form-inline reminder-form">
           <div className="form-group">
             <input
-              className="form-control"
+              className="form-control inputForm"
               placeholder="I have to ..."
               onChange={(event) => this.setState({ text: event.target.value })}
             />
             <input
-              className="form-control"
+              className="form-control inputForm"
               type="datetime-local"
               onChange={(event) =>
                 this.setState({ dueDate: event.target.value })
