@@ -21,7 +21,6 @@ class App extends Component {
   };
 
   renderReminder = () => {
-    console.log("reminder", this.props);
     const { reminders } = this.props;
     return (
       <ul className="list-group col-sm-4">
