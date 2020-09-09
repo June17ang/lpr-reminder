@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => this.renderReminder(), 60000);
+    setInterval(() => this.renderReminder(), 1000);
   }
 
   addReminder = () => {
