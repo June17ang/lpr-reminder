@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addReminder } from "../actions";
+import { addReminder, deleteReminder } from "../actions";
 
 class App extends Component {
   constructor(props) {
@@ -24,13 +24,20 @@ class App extends Component {
           return (
             <li key={reminder.id} className="list-group-item">
               <div className="list-item">{reminder.text}</div>
-              <div className="list-item delete-btn">&#x2715;</div>
+              <div
+                className="list-item delete-btn"
+                onClick={this.deleteReminder(reminder.id)}
+              >
+                &#x2715;
+              </div>
             </li>
           );
         })}
       </ul>
     );
   };
+
+  deleteReminder = (id) => {};
 
   render() {
     return (
@@ -60,4 +67,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addReminder })(App);
+export default connect(mapStateToProps, { addReminder, deleteReminder })(App);
